@@ -1,6 +1,7 @@
 /**
  * Irfan Safi Portfolio - Core Logic
- * Features: Birthday Countdown, Theme Controller, System Clock, Interactive Spotlight
+ * Author: Irfan Safi
+ * Features: Birthday Countdown, Theme Controller, System Clock, Interactive Spotlight, Email Copy
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -12,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         setInterval(() => {
             const now = new Date();
-            // Format: HH:MM:SS (24-hour)
+            // Format: HH:MM:SS (24-hour format)
             clockEl.innerText = now.toLocaleTimeString('en-GB');
         }, 1000);
     };
@@ -42,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
         const m = Math.floor((diff / 1000 / 60) % 60);
 
-        // Update DOM with smooth leading zeros
+        // Update DOM with leading zeros for consistent spacing
         daysEl.innerText = d.toString().padStart(2, '0');
         hoursEl.innerText = h.toString().padStart(2, '0');
         minsEl.innerText = m.toString().padStart(2, '0');
@@ -50,31 +51,50 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- 3. THEME CONTROLLER ---
     window.setTheme = (theme) => {
-        // Set attribute for CSS targeting
         document.documentElement.setAttribute('data-theme', theme);
         
-        // Update UI Button States
+        // Update UI Button active states
         document.querySelectorAll('.t-btn').forEach(btn => {
             btn.classList.remove('active');
         });
         
-        // Link the 'white' theme back to the 'lime' color button for UI consistency
+        // 'white' maps to the lime button in our UI
         const targetBtnClass = (theme === 'white') ? '.lime' : `.${theme}`;
         const activeBtn = document.querySelector(targetBtnClass);
         if (activeBtn) activeBtn.classList.add('active');
         
-        // Save to local storage for persistence
         localStorage.setItem('hub-theme-pref', theme);
     };
 
-    // --- 4. MOUSE SPOTLIGHT INTERACTION ---
+    // --- 4. EMAIL COPY TOOL ---
+    window.copyEmail = () => {
+        const email = "safi22744@gmail.com";
+        const status = document.getElementById('copy-status');
+        const text = document.getElementById('email-text');
+
+        navigator.clipboard.writeText(email).then(() => {
+            // UI Feedback
+            text.innerText = email;
+            status.style.opacity = "1";
+            
+            // Revert back after 2 seconds
+            setTimeout(() => {
+                status.style.opacity = "0";
+                text.innerText = "Click to Copy";
+            }, 2000);
+        }).catch(err => {
+            console.error('Could not copy email: ', err);
+        });
+    };
+
+    // --- 5. MOUSE SPOTLIGHT INTERACTION ---
     const initSpotlight = () => {
         const cards = document.querySelectorAll('.card');
         
         cards.forEach(card => {
             card.addEventListener('mousemove', (e) => {
                 const rect = card.getBoundingClientRect();
-                // Calculate cursor position relative to the card
+                // Calculate cursor position relative to each card
                 const x = e.clientX - rect.left;
                 const y = e.clientY - rect.top;
                 
@@ -84,8 +104,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    // --- 5. INITIALIZATION ---
-    // Start all core functions
+    // --- 6. INITIALIZATION ---
     startClock();
     updateBirthday();
     initSpotlight();
@@ -94,7 +113,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const savedTheme = localStorage.getItem('hub-theme-pref') || 'white';
     setTheme(savedTheme);
 
-    // Refresh countdown every 30 seconds to stay accurate
+    // Refresh countdown every 30 seconds
     setInterval(updateBirthday, 30000);
 
 });
