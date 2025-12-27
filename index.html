@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Irfan Safi | Hub</title>
+    <title>Irfan Safi | Personal Hub</title>
     
-    <meta name="description" content="Personal Hub of Irfan Safi. Live in Bangladesh.">
+    <meta name="description" content="Personal Portfolio and Hub of Irfan Safi. Live in Bangladesh.">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
@@ -14,7 +14,11 @@
 </head>
 <body>
 
+    <div class="bg-glow"></div>
+    <div class="noise-overlay"></div>
+
     <main class="container">
+        
         <header class="card hero">
             <div class="status-pill"><div class="dot"></div> Online</div>
             <div class="hero-text">
@@ -25,8 +29,8 @@
 
         <section class="card wide">
             <div style="display:flex; justify-content:space-between; align-items:center;">
-                <h3 style="font-size: 0.7rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px;">Next Birthday</h3>
-                <span style="font-size: 0.7rem; color: var(--accent); font-weight: 800;">JULY 28</span>
+                <h3 class="label-text">Next Birthday</h3>
+                <span class="birthday-date">JULY 28</span>
             </div>
             <div class="countdown-display">
                 <div class="time-box"><span id="days">00</span><p>Days</p></div>
@@ -36,18 +40,21 @@
         </section>
 
         <section class="card small">
-            <h3 style="font-size: 0.7rem; color: var(--text-dim); margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px;">Palette</h3>
+            <h3 class="label-text" style="margin-bottom: 10px;">Palette</h3>
             <div class="theme-wrap">
-                <button class="t-btn lime active" onclick="setTheme('white')" title="Lime"></button>
-                <button class="t-btn red" onclick="setTheme('red')" title="Red"></button>
-                <button class="t-btn purple" onclick="setTheme('purple')" title="Purple"></button>
+                <button class="t-btn lime active" onclick="setTheme('white')" title="Default Lime"></button>
+                <button class="t-btn red" onclick="setTheme('red')" title="Red Theme"></button>
+                <button class="t-btn purple" onclick="setTheme('purple')" title="Purple Theme"></button>
+                
+                <button class="t-btn custom-trigger" onclick="document.getElementById('colorPicker').click()">+</button>
+                <input type="color" id="colorPicker" oninput="applyCustomColor(this.value)" style="display:none;">
             </div>
         </section>
 
         <section class="card small clickable" onclick="copyEmail()">
-            <h3 style="font-size: 0.7rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px;">Email</h3>
-            <p id="email-text" style="font-size: 0.75rem; font-weight: 600; margin-top: 5px;">Click to Copy</p>
-            <div id="copy-status" style="font-size: 0.6rem; color: var(--accent); margin-top: 5px; opacity: 0; font-weight: 800;">COPIED!</div>
+            <h3 class="label-text">Email</h3>
+            <p id="email-text">Click to Copy</p>
+            <div id="copy-status">COPIED!</div>
         </section>
 
         <a href="https://facebook.com/irfan.safi00" target="_blank" class="card social facebook">Facebook</a>
@@ -55,8 +62,8 @@
 
         <section class="card wide">
             <div style="display:flex; justify-content:space-between; align-items:center;">
-                <h3 style="font-size: 0.7rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px;">Likes</h3>
-                <p id="clock" style="font-weight: 800; font-size: 0.9rem; color: var(--accent);">00:00:00</p>
+                <h3 class="label-text">Likes</h3>
+                <p id="clock">00:00:00</p>
             </div>
             <div class="skills" style="margin-top: 15px;">
                 <span class="skill-tag">🎮 Game</span>
@@ -64,6 +71,7 @@
                 <span class="skill-tag">💤 Sleep</span>
             </div>
         </section>
+
     </main>
 
     <script src="script.js"></script>
