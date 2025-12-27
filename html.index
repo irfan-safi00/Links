@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | Creative Developer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="card hero">
+            <img src="profile.jpg" alt="Profile" class="avatar">
+            <h1>Alex Riva<span>.</span></h1>
+            <p>UI/UX Designer & Developer</p>
+            <div class="status">
+                <span class="dot"></span> Available for work
+            </div>
+        </header>
+
+        <section class="card wide work">
+            <h3>Selected Work</h3>
+            <div class="project-preview"></div>
+        </section>
+
+        <a href="#" class="card social linkedin">LinkedIn</a>
+        <a href="#" class="card social github">GitHub</a>
+
+        <section class="card stack">
+            <h3>Stack</h3>
+            <p>Figma, React, Framer, Swift</p>
+        </section>
+
+        <section class="card contact">
+            <h3>Let's talk</h3>
+            <p>safi22744@gmail.com</p>
+        </section>
+    </div>
+</body>
+</html>
