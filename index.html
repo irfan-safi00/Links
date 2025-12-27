@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Personal Portfolio | Creative Manush</title>
+    <title>Portfolio | Creative Designer</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,49 +16,65 @@
     <main class="container">
         
         <header class="card hero">
-            <div class="hero-top">
+            <div class="status-container">
                 <div class="status">
-                    <span class="dot"></span> Always available for you!
+                    <span class="dot"></span> Available for work
                 </div>
             </div>
-            <div class="hero-bottom">
-                <h1>Hi, I'm <span>Safi</span></h1>
-                <p>Building high-end digital experiences through UI/UX design and clean code.</p>
+            <div class="hero-content">
+                <h1>Hi, I'm <span>Alex</span></h1>
+                <p>Digital architect crafting high-end dark interfaces and interactive experiences.</p>
             </div>
         </header>
 
-        <section class="card wide">
-            <div class="card-header">
-                <h3>Latest Work</h3>
-                <p>Featured Project 2024</p>
+        <section class="card small theme-card">
+            <h3>Theme</h3>
+            <div class="theme-options">
+                <button class="theme-btn white active" title="Lime White" onclick="setTheme('white')"></button>
+                <button class="theme-btn red" title="Crimson" onclick="setTheme('red')"></button>
+                <button class="theme-btn purple" title="Amethyst" onclick="setTheme('purple')"></button>
             </div>
-            <div class="work-visual"></div>
         </section>
 
-        <a href="https://instagram.com/irfan_safi00" class="card social linkedin" target="_blank">
-            <span>Instagram</span>
+        <section class="card small time-card">
+            <h3>Local Time</h3>
+            <p id="time-display">00:00:00</p>
+        </section>
+
+        <section class="card wide work">
+            <div class="card-header">
+                <h3>Selected Projects</h3>
+                <span class="view-all">View All →</span>
+            </div>
+            <div class="work-visual">
+                <div class="project-tag">Case Study 2025</div>
+            </div>
+        </section>
+
+        <a href="https://linkedin.com" target="_blank" class="card social linkedin">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+            <span>LinkedIn</span>
         </a>
-        
-        <a href="https://facebook.com/irfan.safi00" class="card social github" target="_blank">
-            <span>Facebook</span>
+
+        <a href="https://github.com" target="_blank" class="card social github">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.841 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+            <span>GitHub</span>
         </a>
 
         <section class="card stack">
-            <h3>Own</h3>
-            
-        <a href="https://facebook.com/irfan.safi00"
+            <h3>Expertise</h3>
             <div class="stack-tags">
-                <span class="tag">Tea House™</span>
-        </a>
-                <span class="tag">Escape™</span>
-                <span class="tag">Bangali Chill Zone</span>
-                <span class="tag">Dark Meow City</span>
+                <span class="tag">Next.js</span>
+                <span class="tag">TypeScript</span>
+                <span class="tag">Framer Motion</span>
+                <span class="tag">Figma</span>
+                <span class="tag">Three.js</span>
             </div>
         </section>
 
         <section class="card contact">
-            <h3>Let's talk</h3>
-            <p>safi22744@gmail.com</p>
+            <h3>Get in touch</h3>
+            <p>hello@alexdesign.com</p>
         </section>
 
     </main>
