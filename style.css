@@ -1,12 +1,12 @@
-/* 1. THEME VARIABLES & RESET */
+/* 1. THEMES & VARIABLES */
 :root {
-    --bg: #080808;
+    --bg: #050505;
     --card-bg: #121212;
     --card-border: rgba(255, 255, 255, 0.08);
     --text-main: #ffffff;
     --text-dim: #a1a1a1;
     
-    /* Default Accent (White/Lime Theme) */
+    /* Default: Lime */
     --accent: #cfff04;
     --accent-glow: rgba(207, 255, 4, 0.15);
 }
@@ -21,6 +21,7 @@
     --accent-glow: rgba(188, 119, 255, 0.2);
 }
 
+/* 2. BASE RESET */
 * {
     margin: 0;
     padding: 0;
@@ -36,9 +37,10 @@ body {
     align-items: center;
     min-height: 100vh;
     padding: 20px;
+    overflow-x: hidden;
 }
 
-/* 2. THE BENTO GRID LAYOUT */
+/* 3. BENTO GRID */
 .container {
     display: grid;
     grid-template-columns: repeat(4, 160px);
@@ -47,7 +49,7 @@ body {
     max-width: 700px;
 }
 
-/* 3. CORE CARD STYLING */
+/* 4. CARD CORE */
 .card {
     background: var(--card-bg);
     border: 1px solid var(--card-border);
@@ -68,28 +70,24 @@ body {
     border-color: var(--accent);
 }
 
-/* Spotlight Glow Effect (Controlled by JS) */
+/* Spotlight Effect */
 .card::after {
     content: "";
     position: absolute;
     inset: 0;
-    background: radial-gradient(
-        400px circle at var(--mouse-x) var(--mouse-y), 
-        var(--accent-glow), 
-        transparent 40%
-    );
+    background: radial-gradient(400px circle at var(--mouse-x) var(--mouse-y), var(--accent-glow), transparent 40%);
     z-index: 1;
     pointer-events: none;
 }
 
-/* 4. GRID ASSIGNMENTS */
+/* 5. GRID ASSIGNMENTS */
 .hero { grid-column: span 2; grid-row: span 2; }
 .wide { grid-column: span 2; }
 .small { grid-column: span 1; }
 .stack { grid-column: span 2; }
-.social { grid-column: span 1; text-decoration: none; color: white; align-items: center; justify-content: center; font-weight: 700; z-index: 2; }
+.social { grid-column: span 1; text-decoration: none; color: white; align-items: center; justify-content: center; font-weight: 700; gap: 10px; z-index: 2; }
 
-/* 5. HERO & COMPONENTS */
+/* 6. HERO SECTION */
 h1 { font-size: 2.6rem; font-weight: 800; line-height: 1; letter-spacing: -2px; }
 h1 span { color: var(--accent); transition: color 0.3s; }
 
@@ -103,7 +101,7 @@ h1 span { color: var(--accent); transition: color 0.3s; }
     display: flex;
     align-items: center;
     width: fit-content;
-    transition: 0.3s;
+    margin-bottom: 20px;
 }
 
 .dot {
@@ -115,46 +113,74 @@ h1 span { color: var(--accent); transition: color 0.3s; }
     animation: pulse 2s infinite;
 }
 
-/* 6. DISCORD HUB STYLING */
-.discord-hub { justify-content: flex-start; gap: 10px; }
-.discord-list { display: flex; flex-direction: column; gap: 8px; margin-top: 5px; }
-.discord-item {
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    padding: 10px 14px;
-    border-radius: 14px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    text-decoration: none;
-    color: var(--text-dim);
-    font-size: 0.85rem;
-    transition: 0.3s;
-    z-index: 2;
-}
-.discord-item:hover {
-    background: rgba(255, 255, 255, 0.08);
-    color: var(--text-main);
-}
-.join-btn { color: var(--accent); font-weight: 700; font-size: 0.75rem; }
+/* 7. MUSIC SLIDER */
+.music-slider-card { padding-right: 0 !important; }
+.music-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; padding-right: 24px; }
+.music-label { font-size: 0.7rem; font-weight: 800; color: var(--accent); text-transform: uppercase; }
 
-/* 7. THEME SWITCHER UI */
-.theme-options { display: flex; gap: 10px; margin-top: 8px; z-index: 2; }
-.theme-btn {
-    width: 24px; height: 24px;
-    border-radius: 50%;
-    border: 2px solid rgba(255,255,255,0.1);
+.album-wrapper {
+    display: flex;
+    overflow-x: auto;
+    gap: 16px;
+    padding-bottom: 10px;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+}
+
+.album-wrapper::-webkit-scrollbar { display: none; }
+
+.album-item {
+    flex: 0 0 130px;
+    scroll-snap-align: start;
     cursor: pointer;
+}
+
+.album-art {
+    width: 130px;
+    height: 130px;
+    background: #1a1a1a;
+    border-radius: 16px;
+    margin-bottom: 8px;
+    border: 1px solid var(--card-border);
     transition: 0.3s;
 }
+
+.album-item:hover .album-art { border-color: var(--accent); transform: scale(1.02); }
+
+.album-meta h4 { font-size: 0.85rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.album-meta p { font-size: 0.7rem; color: var(--text-dim); }
+
+/* Individual Art Gradients */
+.art-1 { background: linear-gradient(45deg, #222, var(--accent)); }
+.art-2 { background: linear-gradient(45deg, #333, #666); }
+.art-3 { background: linear-gradient(45deg, #111, #444); }
+.art-4 { background: linear-gradient(45deg, #222, #555); }
+.art-5 { background: linear-gradient(45deg, #000, #333); }
+
+/* 8. THEME & PLUS BUTTON */
+.theme-options { display: flex; align-items: center; gap: 8px; margin-top: 10px; z-index: 10; position: relative; }
+.theme-btn { width: 22px; height: 22px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.1); cursor: pointer; transition: 0.3s; }
 .theme-btn.white { background: #cfff04; }
 .theme-btn.red { background: #ff4d4d; }
 .theme-btn.purple { background: #bc77ff; }
-.theme-btn.active { border-color: white; transform: scale(1.1); }
+.theme-btn.active { border-color: white; transform: scale(1.2); }
 
-/* 8. ANIMATIONS & RESPONSIVE */
+.plus-btn {
+    background: transparent;
+    color: var(--text-dim);
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px dashed rgba(255,255,255,0.2);
+}
+
+/* 9. TAGS & ANIMATIONS */
+.stack-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.tag { background: rgba(255,255,255,0.05); padding: 4px 10px; border-radius: 10px; font-size: 0.75rem; color: var(--text-dim); }
+
 @keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(40px); }
+    from { opacity: 0; transform: translateY(30px); }
     to { opacity: 1; transform: translateY(0); }
 }
 
@@ -164,13 +190,10 @@ h1 span { color: var(--accent); transition: color 0.3s; }
     100% { transform: scale(1); opacity: 1; }
 }
 
+/* 10. MOBILE */
 @media (max-width: 700px) {
-    .container {
-        grid-template-columns: repeat(2, 1fr);
-        grid-template-rows: auto;
-        width: 100%;
-        padding: 10px;
-    }
-    .hero, .wide, .stack, .small, .discord-hub { grid-column: span 2; }
-    .social { grid-column: span 1; }
-}
+    .container { grid-template-columns: repeat(2, 1fr); width: 100%; }
+    .hero, .wide, .stack, .small { grid-column: span 2; }
+    .social { grid-column: span 1; height: 120px; }
+                  }
+                                  
