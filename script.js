@@ -1,19 +1,17 @@
 /**
  * Irfan Safi Portfolio - Core Logic
- * Author: Irfan Safi
- * Features: Birthday Countdown, Theme Controller, System Clock, Interactive Spotlight, Email Copy
  */
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    // --- 1. SYSTEM CLOCK ---
+    // --- 1. LIVE SYSTEM CLOCK ---
     const startClock = () => {
         const clockEl = document.getElementById('clock');
         if (!clockEl) return;
         
         setInterval(() => {
             const now = new Date();
-            // Format: HH:MM:SS (24-hour format)
+            // Format: HH:MM:SS (24-hour)
             clockEl.innerText = now.toLocaleTimeString('en-GB');
         }, 1000);
     };
@@ -43,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
         const m = Math.floor((diff / 1000 / 60) % 60);
 
-        // Update DOM with leading zeros for consistent spacing
+        // Update DOM with smooth leading zeros
         daysEl.innerText = d.toString().padStart(2, '0');
         hoursEl.innerText = h.toString().padStart(2, '0');
         minsEl.innerText = m.toString().padStart(2, '0');
@@ -51,6 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- 3. THEME CONTROLLER ---
     window.setTheme = (theme) => {
+        // Set attribute for CSS targeting
         document.documentElement.setAttribute('data-theme', theme);
         
         // Update UI Button active states
@@ -63,6 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const activeBtn = document.querySelector(targetBtnClass);
         if (activeBtn) activeBtn.classList.add('active');
         
+        // Save to local storage for persistence
         localStorage.setItem('hub-theme-pref', theme);
     };
 
@@ -113,7 +113,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const savedTheme = localStorage.getItem('hub-theme-pref') || 'white';
     setTheme(savedTheme);
 
-    // Refresh countdown every 30 seconds
-    setInterval(updateBirthday, 30000);
+    // Refresh countdown every minute to stay accurate
+    setInterval(updateBirthday, 60000);
 
 });
