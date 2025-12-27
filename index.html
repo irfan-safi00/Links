@@ -3,37 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio | Creative Developer</title>
+    <title>Personal Portfolio | Creative Developer</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
+
+    <main class="container">
+        
         <header class="card hero">
-            <img src="profile.jpg" alt="Profile" class="avatar">
-            <h1>Alex Riva<span>.</span></h1>
-            <p>UI/UX Designer & Developer</p>
-            <div class="status">
-                <span class="dot"></span> Available for work
+            <div class="hero-top">
+                <div class="status">
+                    <span class="dot"></span> Available for projects
+                </div>
+            </div>
+            <div class="hero-bottom">
+                <h1>Hi, I'm <span>Alex</span></h1>
+                <p>Building high-end digital experiences through UI/UX design and clean code.</p>
             </div>
         </header>
 
-        <section class="card wide work">
-            <h3>Selected Work</h3>
-            <div class="project-preview"></div>
+        <section class="card wide">
+            <div class="card-header">
+                <h3>Latest Work</h3>
+                <p>Featured Project 2024</p>
+            </div>
+            <div class="work-visual"></div>
         </section>
 
-        <a href="#" class="card social linkedin">LinkedIn</a>
-        <a href="#" class="card social github">GitHub</a>
+        <a href="https://linkedin.com" class="card social linkedin" target="_blank">
+            <span>LinkedIn</span>
+        </a>
+        
+        <a href="https://github.com" class="card social github" target="_blank">
+            <span>GitHub</span>
+        </a>
 
         <section class="card stack">
-            <h3>Stack</h3>
-            <p>Figma, React, Framer, Swift</p>
+            <h3>My Stack</h3>
+            <div class="stack-tags">
+                <span class="tag">Figma</span>
+                <span class="tag">React</span>
+                <span class="tag">Framer</span>
+                <span class="tag">Tailwind</span>
+            </div>
         </section>
 
         <section class="card contact">
             <h3>Let's talk</h3>
-            <p>safi22744@gmail.com</p>
+            <p>hello@yourdomain.com</p>
         </section>
-    </div>
+
+    </main>
+
+    <script src="script.js"></script>
 </body>
 </html>
