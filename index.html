@@ -4,100 +4,189 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Irfan Safi | Hub</title>
-    
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
     
-    <link rel="stylesheet" href="style.css">
+    <style>
+        :root {
+            --bg: #050505;
+            --card-bg: rgba(20, 20, 20, 0.8);
+            --card-border: rgba(255, 255, 255, 0.08);
+            --text-main: #ffffff;
+            --text-dim: #a1a1a1;
+            --accent: #cfff04; /* Default Lime */
+            --accent-glow: rgba(207, 255, 4, 0.15);
+        }
+
+        [data-theme="red"] { --accent: #ff4d4d; --accent-glow: rgba(255, 77, 77, 0.2); }
+        [data-theme="purple"] { --accent: #bc77ff; --accent-glow: rgba(188, 119, 255, 0.2); }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: var(--bg);
+            color: var(--text-main);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            display: flex; justify-content: center; align-items: center;
+            min-height: 100vh; padding: 20px;
+        }
+
+        /* BENTO GRID */
+        .container {
+            display: grid;
+            grid-template-columns: repeat(4, 160px);
+            grid-template-rows: repeat(3, 160px);
+            gap: 16px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 32px;
+            padding: 24px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            backdrop-filter: blur(10px);
+            transition: transform 0.4s cubic-bezier(0.2, 1, 0.3, 1);
+        }
+
+        .card:hover { transform: translateY(-8px); border-color: var(--accent); }
+
+        /* GRID ASSIGNMENTS */
+        .hero { grid-column: span 2; grid-row: span 2; }
+        .wide { grid-column: span 2; }
+        .small { grid-column: span 1; }
+        .social { text-decoration: none; color: white; align-items: center; justify-content: center; font-weight: 800; }
+
+        /* HERO & AVATAR */
+        .avatar-container {
+            position: relative;
+            width: 100px;
+            height: 100px;
+            margin-bottom: 5px;
+        }
+        .avatar-img {
+            width: 100%; height: 100%; object-fit: contain;
+            animation: float 3s ease-in-out infinite;
+        }
+        .speech-bubble {
+            position: absolute; top: -5px; right: -15px;
+            background: var(--accent); color: #000;
+            padding: 4px 10px; border-radius: 12px 12px 12px 2px;
+            font-size: 0.7rem; font-weight: 800;
+            animation: pop 0.5s ease-out forwards;
+        }
+
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+        @keyframes pop { from { scale: 0; } to { scale: 1; } }
+
+        h1 { font-size: 2.4rem; letter-spacing: -1px; }
+        h1 span { color: var(--accent); }
+
+        /* MUSIC SLIDER */
+        .album-wrapper { display: flex; overflow-x: auto; gap: 12px; scrollbar-width: none; }
+        .album-wrapper::-webkit-scrollbar { display: none; }
+        .album-item { flex: 0 0 120px; cursor: pointer; text-align: center; }
+        .album-art { 
+            width: 120px; height: 120px; border-radius: 18px; 
+            background-size: cover; background-position: center;
+            border: 1px solid var(--card-border); transition: 0.3s;
+        }
+        .album-item:hover .album-art { border-color: var(--accent); transform: scale(1.05); }
+        .album-meta h4 { font-size: 0.8rem; margin-top: 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+        /* THEME BTNS */
+        .theme-options { display: flex; gap: 8px; align-items: center; }
+        .theme-btn { width: 22px; height: 22px; border-radius: 50%; border: 2px solid transparent; cursor: pointer; }
+        .theme-btn.white { background: #cfff04; }
+        .theme-btn.red { background: #ff4d4d; }
+        .theme-btn.purple { background: #bc77ff; }
+        .theme-btn.active { border-color: white; }
+        .plus-btn { background: none; border: 1px dashed #555; color: #555; display: flex; align-items: center; justify-content: center; }
+
+        /* MOBILE RESPONSIVE */
+        @media (max-width: 700px) {
+            .container { grid-template-columns: repeat(2, 1fr); width: 100%; }
+            .hero, .wide, .small { grid-column: span 2; }
+        }
+    </style>
 </head>
 <body>
 
     <main class="container">
-        
         <header class="card hero">
-            <div class="status-container">
-                <div class="status"><span class="dot"></span> Online</div>
+            <div class="avatar-container">
+                <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNHJueW9ueW55bnlueW55bnlueW55bnlueW55bnlueW55bnlueW55JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1z/3o7TKVUn7iM8FMEU24/giphy.gif" class="avatar-img">
+                <div class="speech-bubble">Hey!</div>
             </div>
             <div class="hero-content">
                 <h1>Irfan <span>Safi</span></h1>
-                <p>Digital Creator. Building modern experiences with a focus on dark aesthetics.</p>
+                <p>Digital Creator. Building modern aesthetics.</p>
             </div>
         </header>
 
-        <section class="card small theme-card">
+        <section class="card small">
             <h3>Theme</h3>
             <div class="theme-options">
                 <button class="theme-btn white active" onclick="setTheme('white')"></button>
                 <button class="theme-btn red" onclick="setTheme('red')"></button>
                 <button class="theme-btn purple" onclick="setTheme('purple')"></button>
-                
-                <div class="custom-picker-wrapper">
-                    <button class="theme-btn plus-btn" onclick="triggerColorPicker()">+</button>
-                    <input type="color" id="colorPicker" oninput="applyCustomColor(this.value)" style="display:none;">
-                </div>
+                <button class="theme-btn plus-btn" onclick="document.getElementById('cp').click()">+</button>
+                <input type="color" id="cp" oninput="applyCustom(this.value)" style="display:none;">
             </div>
         </section>
 
-        <section class="card small time-card">
-            <h3>Local Time</h3>
-            <p id="time-display">00:00:00</p>
+        <section class="card small">
+            <h3>Time</h3>
+            <p id="clock" style="font-weight: 800; font-size: 1.2rem;">00:00:00</p>
         </section>
 
-        <section class="card wide music-slider-card">
-            <div class="music-header">
-                <span class="music-label">Favorite Music</span>
-                <div class="visualizer">
-                    <div class="bar"></div><div class="bar"></div><div class="bar"></div>
-                </div>
-            </div>
-            
+        <section class="card wide">
+            <h3 style="margin-bottom: 10px; font-size: 0.8rem; color: var(--accent);">FAVORITE TRACKS</h3>
             <div class="album-wrapper">
-                <div class="album-item">
-                    <div class="album-art art-1"></div>
-                    <div class="album-meta"><h4>Dukkho Bilash</h4><p>Artcell</p></div>
+                <div class="album-item" onclick="window.open('https://youtu.be/ye-9Cqa_SC8')">
+                    <div class="album-art" style="background-image: url('https://i.scdn.co/image/ab67616d0000b273b5b54630737088f12a149f13');"></div>
+                    <div class="album-meta"><h4>Dukkho Bilash</h4></div>
                 </div>
-                <div class="album-item">
-                    <div class="album-art art-2"></div>
-                    <div class="album-meta"><h4>Aalo</h4><p>Tahsan</p></div>
+                <div class="album-item" onclick="window.open('https://youtu.be/0kngpyGa0H4')">
+                    <div class="album-art" style="background-image: url('https://i.scdn.co/image/ab67616d0000b2734139e7610065798a449d05a4');"></div>
+                    <div class="album-meta"><h4>Aalo</h4></div>
                 </div>
-                <div class="album-item">
-                    <div class="album-art art-3"></div>
-                    <div class="album-meta"><h4>Rupkotha</h4><p>Warfaze</p></div>
+                <div class="album-item" onclick="window.open('https://youtu.be/CLUL2eO9o9w')">
+                    <div class="album-art" style="background-image: url('https://i.scdn.co/image/ab67616d0000b27329d9198305096504a5574342');"></div>
+                    <div class="album-meta"><h4>Rupkotha</h4></div>
                 </div>
-                <div class="album-item">
-                    <div class="album-art art-4"></div>
-                    <div class="album-meta"><h4>Purnota</h4><p>Warfaze</p></div>
-                </div>
-                <div class="album-item">
-                    <div class="album-art art-5"></div>
-                    <div class="album-meta"><h4>Aadat</h4><p>Atif Aslam</p></div>
+                <div class="album-item" onclick="window.open('https://youtu.be/e5LShHAE03A')">
+                    <div class="album-art" style="background-image: url('https://i.scdn.co/image/ab67616d0000b27320b9e25015b671a5c1825633');"></div>
+                    <div class="album-meta"><h4>Aadat</h4></div>
                 </div>
             </div>
         </section>
 
-        <a href="https://instagram.com/irfan_safi00" target="_blank" class="card social instagram">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-            <span>Instagram</span>
-        </a>
-
-        <a href="https://facebook.com/irfan.safi00" target="_blank" class="card social facebook">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.312h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z"/></svg>
-            <span>Facebook</span>
-        </a>
-
-        <section class="card stack">
-            <h3>Interests</h3>
-            <div class="stack-tags">
-                <span class="tag">Gaming</span>
-                <span class="tag">Design</span>
-                <span class="tag">Editing</span>
-                <span class="tag">Music</span>
-            </div>
-        </section>
+        <a href="https://instagram.com/irfan_safi00" target="_blank" class="card social">Instagram</a>
+        <a href="https://facebook.com/irfan.safi00" target="_blank" class="card social">Facebook</a>
 
     </main>
 
-    <script src="script.js"></script>
+    <script>
+        function setTheme(t) {
+            document.documentElement.setAttribute('data-theme', t);
+            document.querySelectorAll('.theme-btn').forEach(b => b.classList.remove('active'));
+            if(t!=='custom') document.querySelector('.'+t).classList.add('active');
+        }
+
+        function applyCustom(hex) {
+            setTheme('custom');
+            document.documentElement.style.setProperty('--accent', hex);
+            const r = parseInt(hex.slice(1,3),16), g = parseInt(hex.slice(3,5),16), b = parseInt(hex.slice(5,7),16);
+            document.documentElement.style.setProperty('--accent-glow', `rgba(${r},${g},${b},0.15)`);
+        }
+
+        setInterval(() => {
+            document.getElementById('clock').textContent = new Date().toLocaleTimeString();
+        }, 1000);
+    </script>
 </body>
 </html>
