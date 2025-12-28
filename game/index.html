@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Catch the Vibe | Bangali Chill Zone</title>
+    <style>
+        /* CSS STYLES */
+        body {
+            background: #0b192c;
+            color: white;
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0;
+            overflow: hidden;
+            touch-action: manipulation;
+        }
+
+        #game-ui {
+            position: absolute;
+            top: 20px;
+            width: 100%;
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+            z-index: 10;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .target {
+            position: absolute;
+            width: 70px;
+            height: 70px;
+            background: #5865F2; /* Discord Blue */
+            border-radius: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 35px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            border: 2px solid rgba(255,255,255,0.2);
+            animation: fall linear forwards;
+            transition: transform 0.1s;
+        }
+
+        @keyframes fall {
+            to { transform: translateY(110vh) rotate(360deg); }
+        }
+
+        /* Lose Screen / Screenshot Card */
+        #lose-screen {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #152535;
+            padding: 40px;
+            border-radius: 25px;
+            border: 3px solid #6eacda;
+            text-align: center;
+            width: 85%;
+            max-width: 320px;
+            z-index: 100;
+            box-shadow: 0 0 100px rgba(0,0,0,0.9);
+        }
+
+        .final-score-val {
+            font-size: 5rem;
+            color: #FFD700;
+            margin: 5px 0;
+            font-weight: 800;
+        }
+
+        .promo-banner {
+            background: #DA291C; /* Red for attention
+          
