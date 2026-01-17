@@ -3,31 +3,31 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Admin Panel - Archive</title>
+<title>Admin Panel</title>
 <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="admin">
 
-<!-- Login -->
 <div id="login">
   <h2>Admin Login</h2>
-  <input type="password" id="secretPassword" placeholder="Enter password">
+  <input type="password" id="secretPassword" placeholder="Password">
   <button onclick="login()">Login</button>
 </div>
 
-<!-- Admin Panel -->
-<div id="adminPanel" style="display:none;">
+<div id="adminPanel" style="display:none">
 
-  <!-- Upload Form -->
-  <h2>Upload New Project</h2>
-  <input type="text" id="projectTitle" placeholder="Project Title">
-  <input type="text" id="projectDesc" placeholder="Description">
-  <input type="text" id="projectLink" placeholder="Project Link">
-  <button onclick="uploadProject()">Upload Project</button>
+  <div class="card">
+    <h2>Add Project</h2>
+    <input id="projectTitle" placeholder="Title">
+    <input id="projectDesc" placeholder="Description">
+    <input id="projectLink" placeholder="Link">
+    <button onclick="uploadProject()">Add</button>
+  </div>
 
-  <!-- Existing Projects List -->
-  <h2>Manage Existing Projects</h2>
-  <div id="projectList"></div>
+  <div class="card">
+    <h2>Manage Projects</h2>
+    <div id="projectList"></div>
+  </div>
 
 </div>
 
