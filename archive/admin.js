@@ -3,11 +3,11 @@ import { getFirestore, collection, addDoc } from "https://www.gstatic.com/fireba
 
 // Firebase config
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_PROJECT.firebaseapp.com",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_PROJECT.appspot.com",
-  appId: "YOUR_APP_ID"
+  apiKey: "AIzaSyCV3oHW4Y2c_fIrkiG41p0s4x5sISn8lIg",
+  authDomain: "archive-site-2026.firebaseapp.com",
+  projectId: "archive-site-2026",
+  storageBucket: "archive-site-2026.firebasestorage.app",
+  appId: "1:185594379425:web:c5a1cbb20ab3f3ee8c84e0"
 };
 
 const app = initializeApp(firebaseConfig);
