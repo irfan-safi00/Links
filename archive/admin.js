@@ -1,92 +1,77 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js";
-import { getFirestore, collection, addDoc, getDocs, doc, deleteDoc, updateDoc } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore.js";
+import {
+  getFirestore, collection, addDoc, getDocs,
+  doc, deleteDoc, updateDoc, getDoc
+} from "https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCV3oHW4Y2c_fIrkiG41p0s4x5sISn8lIg",
   authDomain: "archive-site-2026.firebaseapp.com",
-  projectId: "archive-site-2026",
-  storageBucket: "archive-site-2026.firebasestorage.app",
-  messagingSenderId: "185594379425",
-  appId: "1:185594379425:web:c5a1cbb20ab3f3ee8c84e0",
-  measurementId: "G-RVS1D9H6F2"
+  projectId: "archive-site-2026"
 };
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 const SECRET = "mypassword123";
-window.login = function() {
-  const pass = document.getElementById('secretPassword').value;
-  if(pass === SECRET){
-    document.getElementById('login').style.display = "none";
-    document.getElementById('adminPanel').style.display = "block";
+
+window.login = () => {
+  if (secretPassword.value === SECRET) {
+    login.style.display = "none";
+    adminPanel.style.display = "block";
     loadProjects();
-  } else alert("Wrong password!");
-}
+  } else alert("Wrong password");
+};
 
-// Add new project
-window.uploadProject = async function(){
-  const title = document.getElementById('projectTitle').value;
-  const description = document.getElementById('projectDesc').value;
-  const link = document.getElementById('projectLink').value;
-
-  if(!title) return alert("Title is required!");
+window.uploadProject = async () => {
+  if (!projectTitle.value) return alert("Title required");
 
   await addDoc(collection(db, "projects"), {
-    title, description, link
+    title: projectTitle.value,
+    description: projectDesc.value,
+    link: projectLink.value
   });
 
-  alert("Project added!");
+  projectTitle.value = projectDesc.value = projectLink.value = "";
   loadProjects();
-}
+};
 
-// Load projects for admin panel
-async function loadProjects(){
-  const projectList = document.getElementById('projectList');
+async function loadProjects() {
   projectList.innerHTML = "";
-  const snapshot = await getDocs(collection(db, "projects"));
-  snapshot.forEach(docSnap => {
-    const project = docSnap.data();
-    const id = docSnap.id;
-    const div = document.createElement('div');
-    div.classList.add('admin-card');
-    div.innerHTML = `
-      <strong>${project.title}</strong> - ${project.description}
-      <br><a href="${project.link}" target="_blank">${project.link}</a>
-      <br>
-      <button onclick="editProject('${id}')">Edit</button>
-      <button onclick="deleteProject('${id}')">Delete</button>
-      <hr>
+  const snap = await getDocs(collection(db, "projects"));
+
+  snap.forEach(d => {
+    const p = d.data();
+    projectList.innerHTML += `
+      <div class="admin-card">
+        <strong>${p.title}</strong>
+        <button onclick="editProject('${d.id}')">Edit</button>
+        <button onclick="deleteProject('${d.id}')">Delete</button>
+      </div>
     `;
-    projectList.appendChild(div);
   });
 }
 
-// Delete project
-window.deleteProject = async function(id){
-  if(confirm("Are you sure you want to delete this project?")){
+window.deleteProject = async id => {
+  if (confirm("Delete?")) {
     await deleteDoc(doc(db, "projects", id));
-    alert("Project deleted!");
     loadProjects();
   }
-}
+};
 
-// Edit project (simple prompt version)
-window.editProject = async function(id){
-  const docRef = doc(db, "projects", id);
-  const snapshot = await docRef.get();
-  const project = snapshot.data();
+window.editProject = async id => {
+  const ref = doc(db, "projects", id);
+  const snap = await getDoc(ref);
+  const p = snap.data();
 
-  const newTitle = prompt("Title:", project.title) || project.title;
-  const newDesc = prompt("Description:", project.description) || project.description;
-  const newLink = prompt("Link:", project.link) || project.link;
+  const title = prompt("Title", p.title);
+  if (!title) return;
 
-  await updateDoc(docRef, {
-    title: newTitle,
-    description: newDesc,
-    link: newLink
+  await updateDoc(ref, {
+    title,
+    description: prompt("Description", p.description),
+    link: prompt("Link", p.link)
   });
 
-  alert("Project updated!");
   loadProjects();
-}
+};
