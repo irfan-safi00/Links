@@ -1,1 +1,28 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Panel - Archive</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="login">
+  <h2>Admin Login</h2>
+  <input type="password" id="secretPassword" placeholder="Enter password">
+  <button onclick="login()">Login</button>
+</div>
+
+<div id="adminPanel" style="display:none;">
+  <h2>Upload New Project</h2>
+  <input type="file" id="projectImage">
+  <input type="text" id="projectTitle" placeholder="Project Title">
+  <input type="text" id="projectDesc" placeholder="Description">
+  <input type="text" id="projectLink" placeholder="Project Link">
+  <button onclick="uploadProject()">Upload Project</button>
+</div>
+
+<script type="module" src="admin.js"></script>
+</body>
+</html>
